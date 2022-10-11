@@ -17,8 +17,7 @@ void loop() {
   
   Serial.end();
   
-  vvvvvv
-  gfgfg
+  
   
 }
 
