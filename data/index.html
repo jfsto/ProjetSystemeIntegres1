@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="script.js"></script>
+    <title>Robot Gouttières</title>
+</head>
+<body>
+    <div id="rbtgout">
+       <h1>Robot Gouttières</h1> 
+    </div>
+
+    <div id="info">
+       <h3>
+            <table>
+            <tr> <td>Niveau de baterie</td> <td>Mode</td></tr>
+            
+            <tr><td><span id="valeurbat">0</span> %</td><td><span id="valeurmode">Automatique</span></td> </tr>
+            
+            </table>
+          
+        </h3>
+    </div>
+
+    <div id="btnmode">
+        <h3 id="mode">Choix du mode</h3>
+        <button id="btnauto" onclick="autobtn()">Automatique</button>
+        <button id="btnmanu" onclick="manubtn()">Manuel</button>
+    </div>
+    
+    <div id="controle">
+        <h3 id="ctrlrbt">Contrôle du robot</h3>
+        <button id="btnavancer">Avancer</button>
+        <br>
+        <br>
+        <button id="btnstop">Stop</button>
+        <br>
+        <br>
+        <button id="btnreculer">Reculer</button>
+        <br>
+        <br>
+        <button id="btnvider">Vider</button>
+    </div>
+</body>
+</html>

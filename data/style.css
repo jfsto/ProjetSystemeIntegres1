@@ -1,0 +1,128 @@
+#rbtgout{
+    box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    padding:4px 8px;
+    background-color: blue;
+    text-align: center;
+    color: white;
+}
+
+#info{
+    box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    padding:4px 8px;
+    text-align: center;
+    font-size: large;
+}
+
+table{
+    margin: auto;
+    border-collapse: collapse;
+
+}
+td{
+    padding:4px 8px;
+    width: 200px;
+}
+
+#btnmode{
+    box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    padding:4px 8px;
+    text-align: center;
+
+}
+#mode{
+    background-color: lightcyan;
+    padding:6px 8px;
+    
+
+}
+
+#btnauto{
+    background-color: white;
+    color: #555555;
+    border: 2px solid #555555;
+    padding: 14px 40px
+    
+}
+
+#btnauto:hover{
+    background-color: #555555;
+    color: white;
+    
+}
+
+#btnmanu{
+    background-color: white;
+    color: #555555;
+    border: 2px solid #555555;
+    padding: 14px 40px
+    
+} 
+
+#btnmanu:hover{
+    background-color: #555555;
+    color: white;
+    
+}
+#controle{
+    box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    padding:4px 8px;
+    text-align: center;
+}
+
+#ctrlrbt{
+    background-color: lightcyan;
+    padding:6px 8px;
+    
+}
+
+#btnavancer{
+    background-color: white;
+    color: blue;
+    border: 2px solid blue;
+    padding: 14px 40px
+}
+
+#btnavancer:hover{
+    background-color: blue;
+    color: white;
+    
+}
+
+#btnstop{
+    background-color: white;
+    color: red;
+    border: 2px solid red;
+    padding: 14px 40px
+}
+
+#btnstop:hover{
+    background-color: red;
+    color: white;
+    
+}
+
+#btnreculer{
+    background-color: white;
+    color: blue;
+    border: 2px solid blue;
+    padding: 14px 40px
+}
+
+#btnreculer:hover{
+    background-color: blue;
+    color: white;
+    
+}
+
+#btnvider{
+    background-color: white;
+    color: green;
+    border: 2px solid green;
+    padding: 14px 40px
+}
+
+#btnvider:hover{
+    background-color: green;
+    color: white;
+    
+}
