@@ -74,6 +74,41 @@ td{
     padding:6px 8px;
     
 }
+#selectvit{
+    width: 15%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+}
+
+#btnvalvit{
+    background-color: white;
+    color: blue;
+    border: 2px solid blue;
+    padding: 14px 14px;
+    
+}
+
+#btnvalvit:hover{
+    background-color: blue;
+    color: white;
+    
+}
+
+#btnstartstop{
+    background-color: white;
+    color: blue;
+    border: 2px solid blue;
+    padding: 14px 14px;
+    
+}
+
+#btnstartstop:hover{
+    background-color: blue;
+    color: white;
+    
+}
 
 #btnavancer{
     background-color: white;

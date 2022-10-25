@@ -6,6 +6,7 @@
 
 const char* ssid     = "RobotGouttières";
 const char* password = "robotgouttieres";
+String mode = "Automatique";
 
 AsyncWebServer server(80);
 
@@ -54,21 +55,33 @@ void setup() {
     request->send(SPIFFS, "/script.js", "text/javascript");
   });
 
+  server.on("/auto", HTTP_GET, [](AsyncWebServerRequest *request)
+  {
+    mode = "Automatique";
+    Serial.println(mode);
+    request->send(200);
+  });
+
+  server.on("/manu", HTTP_GET, [](AsyncWebServerRequest *request)
+  {
+    mode = "Manuel";
+    Serial.println(mode);
+    request->send(200);
+  });
+
+  server.on("/synchromode", HTTP_GET, [](AsyncWebServerRequest *request)
+  {
+   
+    request->send(200, "text/plain", mode);
+  });
+
 server.begin();
 
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  for (int i = 0; i < 4; i++)
-  {
-    Serial.println("Hello World");
-    delay(1000);
-  }
-  
-  Serial.end();
-  
-
+ 
   
 }
 
