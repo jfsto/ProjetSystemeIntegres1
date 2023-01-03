@@ -45,6 +45,31 @@ setInterval(function getmode()
 
 }, 2000);
 
+setInterval(function getmode()
+{
+    var xhttp = new XMLHttpRequest();
+    var NiveauDeBatterie
+
+   
+    xhttp.onreadystatechange = function()
+    {
+        if(this.readyState == 4 && this.status == 200)
+        {
+            NiveauDeBatterie = this.responseText;
+            document.getElementById("valeurbat").innerHTML=NiveauDeBatterie;
+        
+        }
+    };
+
+    
+
+    xhttp.open("GET", "getbatterie", true);
+    xhttp.send();
+
+}, 60000);
+
+
+
 function autobtn(){
     document.getElementById("valeurmode").innerHTML="Automatique"
     document.getElementById("btnavancer").style.visibility='hidden'
