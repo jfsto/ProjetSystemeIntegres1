@@ -7,9 +7,9 @@
 #define DEBUG
 
 // Serveur
-const char *ssid = "RobotGouttières";
-const char *password = "robotgouttieres";
-String mode = "Automatique";
+const char *ssid = "RobotGouttières"; //Nom du wifi
+const char *password = "robotgouttieres"; //mot de passe
+String mode = "Automatique"; 
 String action = "Stop";
 int vitesse;
 int vinit = 0;
@@ -26,21 +26,21 @@ const int IN1 = 18; // IN1 = 1 -> avancer
 const int IN2 = 19; // IN2 = 1 -> reculer /\si les 2 à 1 alors rien
 
 // Out LED
-#define LED_PIN 22
+#define LED_PIN 22 //GPIO22 pour la led
 
 // Extérieur
 #define CAPTSAC 33     // entrée capteur à hauteur du sac de récupération => PIN33
 #define FINDECOURSE 32 // entrée capteur à l'avant du robot, 1= robot en butée contre un objet/gouttière => PIN 32
-#define BATTERIE 34
+#define BATTERIE 34   //Entré ADC pour mesurer la charge de batterie
 
 
 // //Interupt
 hw_timer_t *timer_AV5s = NULL;
-int Flag_5s = 0;
+int Flag_5s = 0; //Flag pour l'interrupt
 int count = 1; // compter 1x 5s puis 2x5s
-int temps = 5000000;
+int temps = 5000000; // temps = 5 secondes
 hw_timer_t *timer_FDC = NULL;
-boolean Flag_FDC;
+boolean Flag_FDC; //flag si Fin de course détecte front montant
 
 // servo
 Servo servo1; // rotation de 180° vidage de la pelle
@@ -219,11 +219,12 @@ void setup()
   pinMode(IN1, OUTPUT); // pin 19 = sortie pour IN1
   pinMode(IN2, OUTPUT); // pin 20 = sortie pour IN2
 
-  digitalWrite(IN1, 0);
+  digitalWrite(IN1, 0); //initialise l'état à 0
   digitalWrite(IN2, 0);
 
   //--------extérieur------------
-  pinMode(FINDECOURSE, INPUT_PULLDOWN);
+  pinMode(FINDECOURSE, INPUT_PULLDOWN); 
+  attachInterrupt(FINDECOURSE,MUR,RISING); //interruption sur pin si le fin de course détecte le mur
   pinMode(CAPTSAC, INPUT_PULLDOWN);
 
   //------LED--------------
@@ -245,24 +246,24 @@ void setup()
   timerAttachInterrupt(timer_AV5s, &Callback_5s, true);
   timerAlarmWrite(timer_AV5s, temps, true);
 
-  timer_FDC = timerBegin(3, 80, true);
-  timerAttachInterrupt(timer_FDC, &MUR, true);
-  timerAlarmWrite(timer_FDC, 200, true);
-  timerAlarmEnable(timer_FDC);
+  // timer_FDC = timerBegin(3, 80, true);
+  // timerAttachInterrupt(timer_FDC, &MUR, true);
+  // timerAlarmWrite(timer_FDC, 200, true);
+  // timerAlarmEnable(timer_FDC);
 }
 
 void loop()
 {
   digitalWrite(LED_PIN, 1);
-  if (mode == "Automatique" && action == "Start")
+  if (mode == "Automatique" && action == "Start") //mode automatique et on lance un cycle
   {
-    timerAlarmEnable(timer_AV5s);
-    Avancer();
+    timerAlarmEnable(timer_AV5s); //démarre le timer 5s
+    Avancer(); 
     Serial.print(Flag_5s);
-    if (Flag_5s > count) // ce if fait planter le programme comment compter le temps ? et incrémenter à chaque fois ?
+    if (Flag_5s > count) //si le flag est plus grand que count -> 5s*x écoulées donc on doit vider
     {
       Stop();
-      while (digitalRead(CAPTSAC) == 0)
+      while (digitalRead(CAPTSAC) == 0)//recule jusqu'au sac de récupération
       {
         Reculer();
       }
@@ -270,15 +271,15 @@ void loop()
       AllerPelle();
       delay(1000);
       RetourPelle();
-      Flag_5s = 0;
+      Flag_5s = 0; 
       count++;
       timerAlarmDisable(timer_AV5s);
       // temps = temps + 5000000
     }
-    else if (Flag_FDC == 1)
+    else if (Flag_FDC == 1) //si on touche la fin de la gouttière
     {
       Stop();
-      while (digitalRead(CAPTSAC) == 0)
+      while (digitalRead(CAPTSAC) == 0) //on va vider le sac
       {
         Reculer();
       }
@@ -286,9 +287,9 @@ void loop()
       AllerPelle();
       delay(1000);
       RetourPelle();
-      action = "Stop";
+      action = "Stop"; //vu qu'on a parcouru toute la gouttière on s'arrête
       Serial.println(action);
-      count = 0;
+      count = 0; //remise à 0 du compteur car on change de gouttière
       Flag_FDC = 0;
     }
   }
